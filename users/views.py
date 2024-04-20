@@ -9,6 +9,7 @@ import datetime
 
 class RegisterView(APIView):
     permission_classes = [AllowAny]
+    http_method_names = ["post"]
 
     def post(self, request):
         user_serializer = UserSerializer(data=request.data)
@@ -26,6 +27,7 @@ class RegisterView(APIView):
 
 class LoginView(APIView):
     permission_classes = [AllowAny]
+    http_method_names = ["post"]
 
     def post(self, request):
         serializer = LoginSerializer(data=request.data)
