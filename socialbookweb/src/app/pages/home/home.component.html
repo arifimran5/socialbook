@@ -1,0 +1,13 @@
+<div class="row mt-5 gy-2">
+  <div class="col-md-12" *ngFor="let post of allPosts">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ post.title }}</h5>
+        <span class="badge bg-primary">{{
+          post.created_at | date : "dd-MM-yyyy"
+        }}</span>
+        <p class="card-text">{{ post.content }}</p>
+      </div>
+    </div>
+  </div>
+</div>
