@@ -2,6 +2,7 @@ from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from .models import Post
 from .serializers import PostSerializer
+from rest_framework.parsers import MultiPartParser, FormParser
 
 
 class AllPostsListView(generics.ListAPIView):
@@ -11,8 +12,10 @@ class AllPostsListView(generics.ListAPIView):
 
 
 class PostListCreateView(generics.ListCreateAPIView):
+    queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = [IsAuthenticated]
+    parser_classes = [MultiPartParser, FormParser]
 
     def get_queryset(self):
         return Post.objects.filter(author=self.request.user)
