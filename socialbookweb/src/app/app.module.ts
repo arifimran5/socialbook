@@ -9,6 +9,10 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material/material.module';
+import { CreatePostComponent } from './pages/create-post/create-post.component';
+import { UserpageComponent } from './pages/userpage/userpage.component';
 
 @NgModule({
   declarations: [
@@ -17,8 +21,17 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
     LoginComponent,
     RegisterComponent,
     HeaderComponent,
+    CreatePostComponent,
+    UserpageComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
