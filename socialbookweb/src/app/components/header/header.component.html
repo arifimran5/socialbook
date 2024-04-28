@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-md navbar-light bg-light">
   <div class="container">
     <a class="navbar-brand" routerLink="/">Socialbook</a>
     <button
@@ -17,14 +17,32 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
         </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Welcome
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" routerLink="/add">Create Post</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <button class="btn text-danger dropdown-item" (click)="logout()">
+              Logout
+            </button>
+          </div>
+        </li>
         <li *ngIf="(isLoggedIn | async) == false" class="nav-item">
           <a class="nav-link" routerLink="/login">Login</a>
         </li>
         <li class="nav-item" *ngIf="(isLoggedIn | async) == false">
           <a class="nav-link" routerLink="/register">Signup</a>
-        </li>
-        <li class="nav-item" *ngIf="(isLoggedIn | async) == true">
-          <button class="btn text-danger" (click)="logout()">Logout</button>
         </li>
       </ul>
       <form class="d-flex">

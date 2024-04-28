@@ -16,7 +16,7 @@ export class PostService {
     return this.http.get<any>(`${this.baseUrl}/posts`);
   }
 
-  createPost(data: { title: string; content: string }) {
+  createPost(data: any) {
     return this.http.post(`${this.baseUrl}/posts/`, data);
   }
 
