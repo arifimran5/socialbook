@@ -9,6 +9,10 @@ import { BehaviorSubject, tap } from 'rxjs';
 export class AuthService {
   baseUrl = 'http://localhost:8000/api';
   token = localStorage.getItem('token');
+  user = localStorage.getItem('user');
+
+  userData = new BehaviorSubject<any>(this.user ? JSON.parse(this.user) : null);
+  userData$ = this.userData.asObservable();
 
   isAuthenticated = new BehaviorSubject<boolean>(this.token !== null);
   isAuthenticated$ = this.isAuthenticated.asObservable();
@@ -25,6 +29,8 @@ export class AuthService {
       .pipe(
         tap((res) => {
           localStorage.setItem('token', res.token);
+          this.userData.next(res.user);
+          localStorage.setItem('user', JSON.stringify(res.user));
           this.isAuthenticated.next(true);
         })
       );
@@ -32,7 +38,9 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     this.isAuthenticated.next(false);
+    this.userData.next(null);
   }
 }
 
@@ -40,4 +48,5 @@ type AuthResponse = {
   token: string;
   message: string;
   status: boolean;
+  user: any;
 };

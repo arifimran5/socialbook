@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -14,11 +15,18 @@ export class HeaderComponent implements OnInit {
     });
   });
 
-  constructor(private authService: AuthService) {}
+  userData: any = null;
 
-  ngOnInit(): void {}
+  constructor(private authService: AuthService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.authService.userData$.subscribe((res) => {
+      this.userData = res;
+    });
+  }
 
   logout() {
     this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

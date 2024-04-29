@@ -27,9 +27,12 @@
             aria-haspopup="true"
             aria-expanded="false"
           >
-            Welcome
+            Welcome {{ userData.user }}
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" [routerLink]="['/user/' + userData.user]">
+              Profile
+            </a>
             <a class="dropdown-item" routerLink="/add">Create Post</a>
             <div class="dropdown-divider"></div>
             <button class="btn text-danger dropdown-item" (click)="logout()">

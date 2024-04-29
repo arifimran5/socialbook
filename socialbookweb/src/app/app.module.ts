@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { CreatePostComponent } from './pages/create-post/create-post.component';
 import { UserpageComponent } from './pages/userpage/userpage.component';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { UserpageComponent } from './pages/userpage/userpage.component';
     HeaderComponent,
     CreatePostComponent,
     UserpageComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
