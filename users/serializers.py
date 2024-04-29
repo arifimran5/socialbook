@@ -10,6 +10,15 @@ class UserProfileSerializer(serializers.ModelSerializer):
         fields = ("bio", "dob")
 
 
+# a serializer to get user  profile with fields bio, dob and user as username not id
+class GetUserProfileSerializer(serializers.ModelSerializer):
+    user = serializers.CharField(source="user.username")
+
+    class Meta:
+        model = UserProfile
+        fields = ("bio", "dob", "user")
+
+
 class UserSerializer(serializers.ModelSerializer):
     profile = UserProfileSerializer()
 

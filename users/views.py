@@ -1,10 +1,17 @@
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from .serializers import UserSerializer, LoginSerializer
+from .serializers import (
+    UserSerializer,
+    LoginSerializer,
+    UserProfileSerializer,
+    GetUserProfileSerializer,
+)
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 import datetime
+from django.contrib.auth.models import User
+from .models import UserProfile
 
 
 class RegisterView(APIView):
@@ -41,8 +48,17 @@ class LoginView(APIView):
                 token = Token.objects.create(user)
                 token.created = datetime.datetime.now()
                 token.save()
+
+            user_profile = UserProfile.objects.get(user=user)
+            user_profile_serializer = GetUserProfileSerializer(user_profile)
+            user_profile_data = user_profile_serializer.data
             return Response(
-                {"status": True, "message": "Login success", "token": token.key},
+                {
+                    "status": True,
+                    "message": "Login success",
+                    "token": token.key,
+                    "user": user_profile_data,
+                },
                 status=status.HTTP_200_OK,
             )
 
